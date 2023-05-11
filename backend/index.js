@@ -21,10 +21,10 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/api/data',(req,res)=>{
-    const{link, no_clicks, date}=req.body;
+   const{link}=req.body;
 
-    connection.query('INSERT INTO linktable (LinkType, NoOfClicks, Time) VALUES (?,?,?)',
-    [link, no_clicks,date], 
+    connection.query('INSERT INTO linktable (LinkType,ClickTime) VALUES (?,NOW())',
+    [link], 
     (error, data)=>{
         if(error){
             console.log("backend error", error)
