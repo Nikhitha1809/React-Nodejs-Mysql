@@ -20,7 +20,7 @@ export default function Link(){
     const handleLink2=()=>{
         const date=new Date();
         const result={
-            link:'Link 1',
+            link:'Link 2',
             no_clicks: 1,
             date
         }
