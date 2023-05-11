@@ -1,15 +1,22 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
 import axios from 'axios';
+import { ClickContext } from "../App";
 
 export default function Link(){
+    const {clickLink, setClickLink}= useContext(ClickContext)
+    const {clickLink2,setClickLink2}=useContext(ClickContext)
+
     
     const handleLink1=()=>{
+        setClickLink(clickLink+1)
+        
         const date=new Date();
         const result={
             link:'Link 1',
-            no_clicks: 1,
+            no_clicks: clickLink,
             date
         }
+        console.log(result);
         axios.post('http://localhost:5001/api/data', result)
         .then(res=>{
             console.log('successful')
@@ -18,12 +25,14 @@ export default function Link(){
         })
     }
     const handleLink2=()=>{
+        setClickLink2(clickLink2+1)
         const date=new Date();
         const result={
-            link:'Link 1',
-            no_clicks: 1,
+            link:'Link 2',
+            no_clicks: clickLink2,
             date
         }
+        console.log(result);
         axios.post('http://localhost:5001/api/data', result)
         .then(res=>{
             console.log('successful')
@@ -32,9 +41,14 @@ export default function Link(){
         })
     }
     return(
-        <div>
-            <a href="#" onClick={handleLink1}>Link1 </a> <br/>
-            <a href="#" onClick={handleLink2}>Link2 </a>
-        </div>
+        <ClickContext.Consumer>
+            {value=>
+            <div>
+                <button onClick={handleLink1}>Link1 </button> <br/>
+                <button onClick={handleLink2}>Link2 </button>
+            </div>
+            }
+            
+        </ClickContext.Consumer>
     )
 }

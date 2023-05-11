@@ -1,14 +1,19 @@
 
 import './App.css';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import Link from './components/Link';
 
+export const ClickContext=createContext()
 function App(){
+  const [clickLink, setClickLink]=useState(0)
+  const [clickLink2,setClickLink2]=useState(0)
   return(
     <div>
+      <ClickContext.Provider value={{clickLink,setClickLink, clickLink2,setClickLink2}}>
       <Link/>
       <hr/>
       <Link/>
+      </ClickContext.Provider>
     </div>
   )
 }
