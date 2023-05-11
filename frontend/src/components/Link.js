@@ -9,12 +9,8 @@ export default function Link(){
     
     const handleLink1=()=>{
         setClickLink(clickLink+1)
-        
-        const date=new Date();
         const result={
             link:'Link 1',
-            no_clicks: clickLink,
-            date
         }
         console.log(result);
         axios.post('http://localhost:5001/api/data', result)
@@ -26,11 +22,8 @@ export default function Link(){
     }
     const handleLink2=()=>{
         setClickLink2(clickLink2+1)
-        const date=new Date();
         const result={
             link:'Link 2',
-            no_clicks: clickLink2,
-            date
         }
         console.log(result);
         axios.post('http://localhost:5001/api/data', result)
